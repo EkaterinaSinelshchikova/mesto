@@ -16,6 +16,10 @@
   margin-bottom: 0px;
 }
 
+.popup__input:focus {
+  outline: none;
+}
+
 @media (max-width: 340px) {
   .popup__input {
     max-width: 238px;
