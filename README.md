@@ -14,4 +14,4 @@
 
 * [Ссылка на GitHub](https://github.com/EkaterinaSinelshchikova/russian-travel)
 
-* [Ссылка на GitHub Pages](https://ekaterinasinelshchikova.github.io/russian-travel/)
+* [Ссылка на GitHub Pages](https://ekaterinasinelshchikova.github.io/mesto/)
