@@ -1,5 +1,4 @@
 .element__img {
-  width: 100%;
   min-width: 282px;
   min-height: 282px;
   border-radius: 10px 10px 0 0;
@@ -9,7 +8,6 @@
 
 @media (max-width: 887px) {
   .element__img {
-    width: 100%;
   max-width: 282px;
   max-height: 282px;
   }
