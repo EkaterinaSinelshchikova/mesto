@@ -6,11 +6,11 @@
   margin-right: 30px;
 }
 
-@media(max-width:539px) {
+@media (max-width: 539px) {
   .profile__avatar {
     margin: 0;
     margin-bottom: 22px;
     min-width: 130px;
-  min-height: 130px;
+    min-height: 130px;
   }
 }

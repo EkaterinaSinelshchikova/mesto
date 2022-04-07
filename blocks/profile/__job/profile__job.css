@@ -9,8 +9,8 @@
   overflow: hidden;
 }
 
-@media(max-width:539px) {
-  .profile__job  {
+@media (max-width: 539px) {
+  .profile__job {
     text-align: center;
     font-size: 14px;
   }

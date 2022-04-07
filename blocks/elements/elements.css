@@ -9,7 +9,6 @@
   gap: 17px;
 }
 
-
 @media (max-width: 539px) {
   .elements {
     max-width: 320px;

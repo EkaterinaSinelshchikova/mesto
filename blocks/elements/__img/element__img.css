@@ -8,7 +8,7 @@
 
 @media (max-width: 887px) {
   .element__img {
-  max-width: 282px;
-  max-height: 282px;
+    max-width: 282px;
+    max-height: 282px;
   }
 }

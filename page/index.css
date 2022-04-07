@@ -1,4 +1,4 @@
-@import url("../style/normalize.css");
+@import url("../vendor/normalize.css");
 @import url("../vendor/fonts/inter/inter.css");
 @import url("../blocks/page/page.css");
 @import url("../blocks/header/header.css");
@@ -25,4 +25,3 @@
 @import url("../blocks/popup/__input/popup__input\ .css");
 @import url("../blocks/popup/__save-button/popup__save-button.css");
 @import url("../blocks/popup/__title/popup__title.css");
-
