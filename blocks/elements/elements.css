@@ -9,6 +9,12 @@
   gap: 17px;
 }
 
+@media (max-width: 858px) {
+  .elements {
+    grid-template-columns: repeat(2, 282px);
+  }
+}
+
 @media (max-width: 539px) {
   .elements {
     max-width: 320px;
