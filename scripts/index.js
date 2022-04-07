@@ -1,6 +1,7 @@
 let ProfileEditBtn = document.querySelector('.profile__edit-button');
 let Modalwindow = document.querySelector('.popup');
 let ModalCloseWindow = document.querySelector('.popup__close-button');
+let modalSaveWindow = document.querySelector('.popup__save-button');
 
 let formElement = document.querySelector('.popup__content');
 let nameInput = formElement.querySelector('#name-input');
@@ -26,6 +27,8 @@ function closeModalWindow () {
 ProfileEditBtn.addEventListener('click',openModalWindow);
 
 ModalCloseWindow.addEventListener('click', closeModalWindow );
+
+modalSaveWindow.addEventListener('click', closeModalWindow );
 
 
 

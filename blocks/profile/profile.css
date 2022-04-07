@@ -6,9 +6,10 @@
   margin: 0 auto;
   margin-left: 200px;
   margin-right: 200px;
+  max-width: 880px;
 }
 
-@media (max-width: 1046px) {
+@media (max-width: 1071px) {
   .profile {
     margin-left: 0px;
     margin-right: 0px;
