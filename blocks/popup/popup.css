@@ -1,6 +1,7 @@
 .popup {
   display: none;
-  align-items: center;
+  padding-top: 125px;
+  align-items: flex-start;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -8,11 +9,4 @@
   bottom: 0;
   right: 0;
   left: 0;
-}
-
-@media (max-width: 539px) {
-  .popup {
-    margin-left: 19px;
-    margin-right: 19px;
-  }
 }

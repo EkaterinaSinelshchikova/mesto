@@ -8,6 +8,8 @@
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  margin-left: 19px;
+  margin-right: 19px;
 }
 
 @media (max-width: 539px) {
