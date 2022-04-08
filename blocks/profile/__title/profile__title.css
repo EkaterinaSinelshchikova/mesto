@@ -19,6 +19,7 @@
     align-self: center;
   }
 }
+
 @media (max-width: 539px) {
   .profile__title {
     text-align: center;

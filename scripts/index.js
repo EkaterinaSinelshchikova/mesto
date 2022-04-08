@@ -1,48 +1,40 @@
-let ProfileEditBtn = document.querySelector('.profile__edit-button');
-let Modalwindow = document.querySelector('.popup');
-let ModalCloseWindow = document.querySelector('.popup__close-button');
-let modalSaveWindow = document.querySelector('.popup__save-button');
+const profileEditBtn = document.querySelector(".profile__edit-button");
+const modalWindow = document.querySelector(".popup");
+const modalCloseWindow = document.querySelector(".popup__close-button");
 
-let formElement = document.querySelector('.popup__content');
-let nameInput = formElement.querySelector('#name-input');
-let jobInput = formElement.querySelector('#job-input');
+const formElement = document.querySelector(".popup__content");
+const nameInput = formElement.querySelector("#name-input");
+const jobInput = formElement.querySelector("#job-input");
 
-const profileName = document.querySelector('.profile__title'); 
-const profileJob = document.querySelector('.profile__job');
+const profileName = document.querySelector(".profile__title");
+const profileJob = document.querySelector(".profile__job");
 
-function openModalWindow () {
-    const name = profileName.textContent;
-    const job = profileJob.textContent;
+function openModalWindow() {
+  const name = profileName.textContent;
+  const job = profileJob.textContent;
 
-    nameInput.value = name;
-    jobInput.value = job;
+  nameInput.value = name;
+  jobInput.value = job;
 
-    Modalwindow.classList.add('popup__is-opened');
+  modalWindow.classList.add("popup__is-opened");
 }
 
-function closeModalWindow () {
-    Modalwindow.classList.remove('popup__is-opened');  
+function closeModalWindow() {
+  modalWindow.classList.remove("popup__is-opened");
 }
 
-ProfileEditBtn.addEventListener('click',openModalWindow);
+function formSubmitHandler(evt) {
+  evt.preventDefault();
 
-ModalCloseWindow.addEventListener('click', closeModalWindow );
+  const name = nameInput.value;
+  const job = jobInput.value;
 
-modalSaveWindow.addEventListener('click', closeModalWindow );
+  profileName.textContent = name;
+  profileJob.textContent = job;
 
-
-
-function formSubmitHandler (evt) {
-    evt.preventDefault();
-
-const name = nameInput.value;
-const job = jobInput.value;
-
-
-
-profileName.textContent = name;
-profileJob.textContent = job;
-
+  closeModalWindow();
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+profileEditBtn.addEventListener("click", openModalWindow);
+modalCloseWindow.addEventListener("click", closeModalWindow);
+formElement.addEventListener("submit", formSubmitHandler);
