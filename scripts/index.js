@@ -1,6 +1,6 @@
 const profileEditBtn = document.querySelector(".profile__edit-button");
 const modalWindow = document.querySelector(".popup");
-const modalCloseWindow = document.querySelector(".popup__close-button");
+const modalCloseButton = document.querySelector(".popup__close-button");
 
 const formElement = document.querySelector(".popup__content");
 const nameInput = formElement.querySelector("#name-input");
@@ -36,5 +36,5 @@ function formSubmitHandler(evt) {
 }
 
 profileEditBtn.addEventListener("click", openModalWindow);
-modalCloseWindow.addEventListener("click", closeModalWindow);
+modalCloseButton.addEventListener("click", closeModalWindow);
 formElement.addEventListener("submit", formSubmitHandler);
