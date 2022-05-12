@@ -37,7 +37,7 @@
         ></button>
       </section>
       <section class="elements">
-        <div class="element">
+        <!-- <div class="element">
           <img
             class="element__img"
             src="./img/karachaevsk.jpg"
@@ -126,14 +126,14 @@
               type="button"
             ></button>
           </div>
-        </div>
+        </div> -->
       </section>
     </main>
     <footer class="footer">
       <span class="footer__copyright">&copy; 2020 Mesto Russia</span>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup_type_edit-button">
       <div class="popup__content">
         <button
           aria-label="Закрыть"
@@ -169,6 +169,73 @@
         </form>
       </div>
     </div>
+
+    <div class="popup popup_type_add-button">
+      <div class="popup__content">
+        <button
+          aria-label="Закрыть"
+          class="popup__close-button"
+          type="button"
+          id="add-popup-close-button"
+        ></button>
+        <h2 class="popup__title">Новое&nbsp;место</h2>
+        <form id="add-place-form" name="info">
+          <input
+            class="popup__input"
+            type="text"
+            placeholder="Название"
+            id="place-input"
+            name="name"
+          />
+          <input
+            class="popup__input"
+            type="text"
+            placeholder="Ссылка на картинку"
+            id="link-input"
+            name="job"
+          />
+
+          <button
+            aria-label="Сохранить"
+            class="popup__save-button"
+            type="submit"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+      </div>
+    
+      <div class="popup popup_type_image-preview">
+        <div class="popup__container">
+        <figure class="popup__figure">
+          <img class="popup__img" src="#" alt="#" />
+          <figcaption class="popup__text"></figcaption>
+          <button aria-label="Закрыть"
+          class="popup__close-button"
+          type="button" 
+          id="preview-popup-close-button"></button>
+        </figure>
+        </div>
+      </div>
+
+    <template class="template-element">
+      <div class="element">
+        <img
+          class="element__img"
+          src="#"
+        />
+        <div class="element__group">
+          <h2 class="element__title"></h2>
+          <button
+            aria-label="Нравится"
+            class="element__like-button"
+            type="button"
+          ></button>
+          <button class="element__delete-button" type="button" aria-label="Удалить">
+        </div>
+        </div>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
