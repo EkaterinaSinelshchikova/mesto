@@ -2,12 +2,20 @@ const profileEditBtn = document.querySelector(".profile__edit-button");
 const modalWindow = document.querySelector(".popup_type_edit-button");
 const modalCloseButton = document.querySelector(".popup__close-button");
 
-const formElement = document.querySelector(".popup__content");
-const nameInput = formElement.querySelector("#name-input");
-const jobInput = formElement.querySelector("#job-input");
+const formProfileEdit = document.querySelector(".popup__content");
+const nameInput = formProfileEdit.querySelector("#name-input");
+const jobInput = formProfileEdit.querySelector("#job-input");
 
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__job");
+
+function openPopup(popup) {
+  popup.classList.add("popup__is-opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup__is-opened");
+}
 
 function openModalWindow() {
   const name = profileName.textContent;
@@ -16,14 +24,14 @@ function openModalWindow() {
   nameInput.value = name;
   jobInput.value = job;
 
-  modalWindow.classList.add("popup__is-opened");
+  openPopup(modalWindow);
 }
 
 function closeModalWindow() {
-  modalWindow.classList.remove("popup__is-opened");
+  closePopup(modalWindow);
 }
 
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   const name = nameInput.value;
@@ -37,7 +45,7 @@ function formSubmitHandler(evt) {
 
 profileEditBtn.addEventListener("click", openModalWindow);
 modalCloseButton.addEventListener("click", closeModalWindow);
-formElement.addEventListener("submit", formSubmitHandler);
+formProfileEdit.addEventListener("submit", handleProfileFormSubmit);
 
 const initialCards = [
   {
@@ -67,7 +75,7 @@ const initialCards = [
 ];
 
 const template = document.querySelector(".template-element").content;
-const elements = document.querySelector(".elements");
+const cardsContainer = document.querySelector(".elements");
 
 const handleLikeClick = (evt) => {
   evt.target.classList.toggle("element__like-button_active");
@@ -80,22 +88,25 @@ const handleDelClick = (evt) => {
 const previewImagePopup = document.querySelector(".popup_type_image-preview");
 const popupImg = previewImagePopup.querySelector(".popup__img");
 const popupText = previewImagePopup.querySelector(".popup__text");
-const popupCloseBtn = previewImagePopup.querySelector("#preview-popup-close-button");
+const popupCloseBtn = previewImagePopup.querySelector(
+  "#preview-popup-close-button"
+);
 
 const handleImgClick = (evt) => {
   popupImg.src = evt.target.src;
   popupText.textContent = evt.target.alt;
+  popupImg.alt = evt.target.alt;
 
-  previewImagePopup.classList.add("popup__is-opened");
+  openPopup(previewImagePopup);
 };
 
 function closeImagePopup() {
-  previewImagePopup.classList.remove("popup__is-opened");
+  closePopup(previewImagePopup);
 }
 
 popupCloseBtn.addEventListener("click", closeImagePopup);
 
-const addCard = (name, link) => {
+const prepareCard = (name, link) => {
   const element = template.cloneNode(true);
   const elementImg = element.querySelector(".element__img");
   const elementTitle = element.querySelector(".element__title");
@@ -110,11 +121,12 @@ const addCard = (name, link) => {
   elementDelBtn.addEventListener("click", handleDelClick);
   elementImg.addEventListener("click", handleImgClick);
 
-  elements.append(element);
+  return element;
 };
 
 initialCards.forEach(({ name, link }) => {
-  addCard(name, link);
+  const element = prepareCard(name, link);
+  cardsContainer.append(element);
 });
 
 const addImgBtn = document.querySelector(".profile__add-button");
@@ -125,11 +137,11 @@ const placeInput = addPlaceFormElement.querySelector("#place-input");
 const linkInput = addPlaceFormElement.querySelector("#link-input");
 
 function openAddWindow() {
-  addWindow.classList.add("popup__is-opened");
+  openPopup(addWindow);
 }
 
 function closeAddWindow() {
-  addWindow.classList.remove("popup__is-opened");
+  closePopup(addWindow);
 }
 
 function addPlaceFormSubmitHandler(evt) {
@@ -140,10 +152,13 @@ function addPlaceFormSubmitHandler(evt) {
 
   const name = placeInputElement.value;
   const link = linkInputElement.value;
+  const element = prepareCard(name, link);
 
-  addCard(name, link);
+  cardsContainer.prepend(element);
 
   closeAddWindow();
+
+  addPlaceFormElement.reset();
 }
 
 addImgBtn.addEventListener("click", openAddWindow);

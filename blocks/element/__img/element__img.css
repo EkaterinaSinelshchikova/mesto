@@ -12,3 +12,8 @@
     max-width: 282px;
   }
 }
+
+.element__img:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
