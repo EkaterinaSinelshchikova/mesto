@@ -12,6 +12,7 @@ const profileJob = document.querySelector(".profile__job");
 const saveButton = document.querySelector(".popup__save-button");
 
 function openPopup(popup) {
+  resetValidation();
   popup.classList.add("popup__is-opened");
 }
 

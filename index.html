@@ -141,34 +141,37 @@
           type="button"
         ></button>
         <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
-        <form class="popup__form"  name="info">
+        <form class="popup__form" name="info">
           <label>
-          <input
-            class="popup__input"
-            type="text"
-            placeholder="Имя"
-            required
-            id="name-input"
-            name="name"
-          />
-          <span class="popup__input_type_error"></span>
+            <input
+              class="popup__input"
+              type="text"
+              placeholder="Имя"
+              required
+              id="name-input"
+              name="name"
+              minlength="2"
+              maxlength="40"
+            />
+            <span id="name-input-error" class="popup__error"></span>
           </label>
           <label>
-          <input
-            class="popup__input"
-            type="text"
-            required
-            placeholder="О себе"
-            id="job-input"
-            name="job"
-          />
-          <span class="popup__input_type_error"></span>
-        </label>
+            <input
+              class="popup__input"
+              type="text"
+              required
+              placeholder="О себе"
+              id="job-input"
+              name="job"
+              minlength="2"
+              maxlength="200"
+            />
+            <span id="job-input-error" class="popup__error"></span>
+          </label>
           <button
             aria-label="Сохранить"
             class="popup__save-button"
             type="submit"
-            
           >
             Сохранить
           </button>
@@ -186,23 +189,30 @@
         ></button>
         <h2 class="popup__title">Новое&nbsp;место</h2>
         <form class="popup__form" id="add-place-form" name="info">
-          <input
-            class="popup__input"
-            type="text"
-            placeholder="Название"
-            id="place-input"
-            name="name"
-            required
-          />
-          <input
-            class="popup__input"
-            type="url"
-            placeholder="Ссылка на картинку"
-            id="link-input"
-            name="job"
-            required
-          />
-
+          <label>
+            <input
+              class="popup__input"
+              type="text"
+              placeholder="Название"
+              id="place-input"
+              name="name"
+              required
+              minlength="2"
+              maxlength="30"
+            />
+            <span id="place-input-error" class="popup__error"></span>
+          </label>
+          <label>
+            <input
+              class="popup__input"
+              type="url"
+              placeholder="Ссылка на картинку"
+              id="link-input"
+              name="job"
+              required
+            />
+            <span id="link-input-error" class="popup__error"></span>
+          </label>
           <button
             aria-label="Сохранить"
             class="popup__save-button"
@@ -212,38 +222,40 @@
           </button>
         </form>
       </div>
-      </div>
-    
-      <div class="popup popup_type_image-preview">
-        <div class="popup__container">
+    </div>
+
+    <div class="popup popup_type_image-preview">
+      <div class="popup__container">
         <div class="popup__figure">
           <img class="popup__img" src="#" alt="#" />
           <p class="popup__text"></p>
-          <button aria-label="Закрыть"
-          class="popup__close-button"
-          type="button" 
-          id="preview-popup-close-button"></button>
-        </div>
+          <button
+            aria-label="Закрыть"
+            class="popup__close-button"
+            type="button"
+            id="preview-popup-close-button"
+          ></button>
         </div>
       </div>
+    </div>
 
     <template class="template-element">
       <div class="element">
-        <img
-          class="element__img"
-          src="#"
-        />
+        <img class="element__img" src="#" />
         <div class="element__group">
           <h2 class="element__title"></h2>
           <button
             aria-label="Нравится"
             class="element__like-button"
             type="button"
-          > 
-        </button>
-          <button class="element__delete-button" type="button" aria-label="Удалить"></button>
+          ></button>
+          <button
+            class="element__delete-button"
+            type="button"
+            aria-label="Удалить"
+          ></button>
         </div>
-        </div>
+      </div>
     </template>
     <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
