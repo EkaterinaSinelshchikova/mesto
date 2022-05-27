@@ -141,7 +141,8 @@
           type="button"
         ></button>
         <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
-        <form name="info">
+        <form class="popup__form"  name="info">
+          <label>
           <input
             class="popup__input"
             type="text"
@@ -150,6 +151,9 @@
             id="name-input"
             name="name"
           />
+          <span class="popup__input_type_error"></span>
+          </label>
+          <label>
           <input
             class="popup__input"
             type="text"
@@ -158,11 +162,13 @@
             id="job-input"
             name="job"
           />
-
+          <span class="popup__input_type_error"></span>
+        </label>
           <button
             aria-label="Сохранить"
             class="popup__save-button"
             type="submit"
+            
           >
             Сохранить
           </button>
@@ -179,20 +185,22 @@
           id="add-popup-close-button"
         ></button>
         <h2 class="popup__title">Новое&nbsp;место</h2>
-        <form id="add-place-form" name="info">
+        <form class="popup__form" id="add-place-form" name="info">
           <input
             class="popup__input"
             type="text"
             placeholder="Название"
             id="place-input"
             name="name"
+            required
           />
           <input
             class="popup__input"
-            type="text"
+            type="url"
             placeholder="Ссылка на картинку"
             id="link-input"
             name="job"
+            required
           />
 
           <button
@@ -200,7 +208,7 @@
             class="popup__save-button"
             type="submit"
           >
-            Сохранить
+            Создать
           </button>
         </form>
       </div>
@@ -237,6 +245,7 @@
         </div>
         </div>
     </template>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

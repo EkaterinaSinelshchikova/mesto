@@ -9,12 +9,29 @@ const jobInput = formProfileEdit.querySelector("#job-input");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__job");
 
+const saveButton = document.querySelector(".popup__save-button");
+
 function openPopup(popup) {
   popup.classList.add("popup__is-opened");
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup__is-opened");
+}
+
+function handleClosePopupOverlay(evt) {
+  const popup = document.querySelector(".popup__is-opened");
+
+  if (evt.target === popup) {
+    closePopup(popup);
+    document.removeEventListener("mousedown", handleClosePopupOverlay);
+  }
+}
+
+function handleModalWindowKeyDown(evt) {
+  if (evt.key === "Escape") {
+    closePopup(modalWindow);
+  }
 }
 
 function openModalWindow() {
@@ -25,10 +42,14 @@ function openModalWindow() {
   jobInput.value = job;
 
   openPopup(modalWindow);
+
+  document.addEventListener("keydown", handleModalWindowKeyDown);
+  document.addEventListener("mousedown", handleClosePopupOverlay);
 }
 
 function closeModalWindow() {
   closePopup(modalWindow);
+  document.removeEventListener("keydown", handleModalWindowKeyDown);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -92,16 +113,26 @@ const popupCloseBtn = previewImagePopup.querySelector(
   "#preview-popup-close-button"
 );
 
+function handleImageKeyDown(evt) {
+  if (evt.key === "Escape") {
+    closePopup(previewImagePopup);
+  }
+}
+
 const handleImgClick = (evt) => {
   popupImg.src = evt.target.src;
   popupText.textContent = evt.target.alt;
   popupImg.alt = evt.target.alt;
 
   openPopup(previewImagePopup);
+
+  document.addEventListener("keydown", handleImageKeyDown);
+  document.addEventListener("mousedown", handleClosePopupOverlay);
 };
 
 function closeImagePopup() {
   closePopup(previewImagePopup);
+  document.removeEventListener("keydown", handleImageKeyDown);
 }
 
 popupCloseBtn.addEventListener("click", closeImagePopup);
@@ -136,12 +167,21 @@ const addPlaceFormElement = document.querySelector("#add-place-form");
 const placeInput = addPlaceFormElement.querySelector("#place-input");
 const linkInput = addPlaceFormElement.querySelector("#link-input");
 
+function handleAddWindowKeyDown(evt) {
+  if (evt.key === "Escape") {
+    closePopup(addWindow);
+  }
+}
+
 function openAddWindow() {
   openPopup(addWindow);
+  document.addEventListener("keydown", handleAddWindowKeyDown);
+  document.addEventListener("mousedown", handleClosePopupOverlay);
 }
 
 function closeAddWindow() {
   closePopup(addWindow);
+  document.removeEventListener("keydown", handleAddWindowKeyDown);
 }
 
 function addPlaceFormSubmitHandler(evt) {
