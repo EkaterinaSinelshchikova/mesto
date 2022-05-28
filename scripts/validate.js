@@ -80,7 +80,7 @@ const setEventListeners = (formElement, validConfig) => {
   const inputList = Array.from(
     formElement.querySelectorAll(`.${inputSelector}`)
   );
-  const saveButton = formElement.querySelector(`.${submitButtonSelector}`);
+  const buttonSave = formElement.querySelector(`.${submitButtonSelector}`);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(
@@ -89,10 +89,9 @@ const setEventListeners = (formElement, validConfig) => {
         inputErrorClass,
         errorClass
       );
-      toggleButtonState(inputList, saveButton, inactiveButtonClass);
+      toggleButtonState(inputList, buttonSave, inactiveButtonClass);
     });
   });
-  toggleButtonState(inputList, saveButton, inactiveButtonClass);
 };
 
 const enableValidation = (validConfig) => {
@@ -126,8 +125,9 @@ function resetValidation() {
 
     inputList.forEach((inputElement) => {
       hideInputError(formElement, inputElement, inputErrorClass, errorSelector);
-      toggleButtonState(inputList, saveButton, inactiveButtonClass);
     });
+
+    toggleButtonState(inputList, saveButton, inactiveButtonClass);
   });
 }
 

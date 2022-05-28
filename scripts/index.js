@@ -1,6 +1,6 @@
 const profileEditBtn = document.querySelector(".profile__edit-button");
-const modalWindow = document.querySelector(".popup_type_edit-button");
-const modalCloseButton = document.querySelector(".popup__close-button");
+const popupEdit = document.querySelector(".popup_type_edit-button");
+const popupEditClose = document.querySelector(".popup__close-button");
 
 const formProfileEdit = document.querySelector(".popup__content");
 const nameInput = formProfileEdit.querySelector("#name-input");
@@ -9,48 +9,46 @@ const jobInput = formProfileEdit.querySelector("#job-input");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__job");
 
-const saveButton = document.querySelector(".popup__save-button");
+const buttonSave = document.querySelector(".popup__save-button");
+
+function closeByEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup__is-opened");
+    closePopup(openedPopup);
+  }
+}
 
 function openPopup(popup) {
-  resetValidation();
   popup.classList.add("popup__is-opened");
+  document.addEventListener("keydown", closeByEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup__is-opened");
+  document.removeEventListener("keydown", closeByEsc);
 }
 
 function handleClosePopupOverlay(evt) {
-  const popup = document.querySelector(".popup__is-opened");
+  const { target, currentTarget } = evt;
 
-  if (evt.target === popup) {
-    closePopup(popup);
-    document.removeEventListener("mousedown", handleClosePopupOverlay);
+  if (target === currentTarget) {
+    closePopup(target);
   }
 }
 
-function handleModalWindowKeyDown(evt) {
-  if (evt.key === "Escape") {
-    closePopup(modalWindow);
-  }
-}
-
-function openModalWindow() {
+function openPopupEdit() {
   const name = profileName.textContent;
   const job = profileJob.textContent;
 
   nameInput.value = name;
   jobInput.value = job;
 
-  openPopup(modalWindow);
-
-  document.addEventListener("keydown", handleModalWindowKeyDown);
-  document.addEventListener("mousedown", handleClosePopupOverlay);
+  resetValidation();
+  openPopup(popupEdit);
 }
 
 function closeModalWindow() {
-  closePopup(modalWindow);
-  document.removeEventListener("keydown", handleModalWindowKeyDown);
+  closePopup(popupEdit);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -65,8 +63,8 @@ function handleProfileFormSubmit(evt) {
   closeModalWindow();
 }
 
-profileEditBtn.addEventListener("click", openModalWindow);
-modalCloseButton.addEventListener("click", closeModalWindow);
+profileEditBtn.addEventListener("click", openPopupEdit);
+popupEditClose.addEventListener("click", closeModalWindow);
 formProfileEdit.addEventListener("submit", handleProfileFormSubmit);
 
 const initialCards = [
@@ -110,7 +108,7 @@ const handleDelClick = (evt) => {
 const previewImagePopup = document.querySelector(".popup_type_image-preview");
 const popupImg = previewImagePopup.querySelector(".popup__img");
 const popupText = previewImagePopup.querySelector(".popup__text");
-const popupCloseBtn = previewImagePopup.querySelector(
+const popupCloseImgPopup = previewImagePopup.querySelector(
   "#preview-popup-close-button"
 );
 
@@ -125,18 +123,15 @@ const handleImgClick = (evt) => {
   popupText.textContent = evt.target.alt;
   popupImg.alt = evt.target.alt;
 
+  resetValidation();
   openPopup(previewImagePopup);
-
-  document.addEventListener("keydown", handleImageKeyDown);
-  document.addEventListener("mousedown", handleClosePopupOverlay);
 };
 
 function closeImagePopup() {
   closePopup(previewImagePopup);
-  document.removeEventListener("keydown", handleImageKeyDown);
 }
 
-popupCloseBtn.addEventListener("click", closeImagePopup);
+popupCloseImgPopup.addEventListener("click", closeImagePopup);
 
 const prepareCard = (name, link) => {
   const element = template.cloneNode(true);
@@ -161,28 +156,26 @@ initialCards.forEach(({ name, link }) => {
   cardsContainer.append(element);
 });
 
-const addImgBtn = document.querySelector(".profile__add-button");
-const addWindow = document.querySelector(".popup_type_add-button");
+const imgBtnAdd = document.querySelector(".profile__add-button");
+const popupAddButton = document.querySelector(".popup_type_add-button");
 const popupCloseButton = document.querySelector("#add-popup-close-button");
-const addPlaceFormElement = document.querySelector("#add-place-form");
-const placeInput = addPlaceFormElement.querySelector("#place-input");
-const linkInput = addPlaceFormElement.querySelector("#link-input");
+const placeFormElementAdd = document.querySelector("#add-place-form");
+const placeInput = placeFormElementAdd.querySelector("#place-input");
+const linkInput = placeFormElementAdd.querySelector("#link-input");
 
 function handleAddWindowKeyDown(evt) {
   if (evt.key === "Escape") {
-    closePopup(addWindow);
+    closePopup(popupAddButton);
   }
 }
 
 function openAddWindow() {
-  openPopup(addWindow);
-  document.addEventListener("keydown", handleAddWindowKeyDown);
-  document.addEventListener("mousedown", handleClosePopupOverlay);
+  resetValidation();
+  openPopup(popupAddButton);
 }
 
 function closeAddWindow() {
-  closePopup(addWindow);
-  document.removeEventListener("keydown", handleAddWindowKeyDown);
+  closePopup(popupAddButton);
 }
 
 function addPlaceFormSubmitHandler(evt) {
@@ -199,9 +192,12 @@ function addPlaceFormSubmitHandler(evt) {
 
   closeAddWindow();
 
-  addPlaceFormElement.reset();
+  placeFormElementAdd.reset();
 }
 
-addImgBtn.addEventListener("click", openAddWindow);
+imgBtnAdd.addEventListener("click", openAddWindow);
 popupCloseButton.addEventListener("click", closeAddWindow);
-addPlaceFormElement.addEventListener("submit", addPlaceFormSubmitHandler);
+placeFormElementAdd.addEventListener("submit", addPlaceFormSubmitHandler);
+popupEdit.addEventListener("mousedown", handleClosePopupOverlay);
+popupAddButton.addEventListener("mousedown", handleClosePopupOverlay);
+previewImagePopup.addEventListener("mousedown", handleClosePopupOverlay);
