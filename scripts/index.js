@@ -11,6 +11,9 @@ const profileJob = document.querySelector(".profile__job");
 
 const buttonSave = document.querySelector(".popup__save-button");
 
+const placeInputElement = document.querySelector("#place-input");
+const linkInputElement = document.querySelector("#link-input");
+
 function closeByEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".popup__is-opened");
@@ -47,9 +50,8 @@ function openPopupEdit() {
   openPopup(popupEdit);
 }
 
-function closeModalWindow() {
   closePopup(popupEdit);
-}
+
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -60,11 +62,11 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = name;
   profileJob.textContent = job;
 
-  closeModalWindow();
+  closePopup(popupEdit);
 }
 
 profileEditBtn.addEventListener("click", openPopupEdit);
-popupEditClose.addEventListener("click", closeModalWindow);
+popupEditClose.addEventListener("click", () => closePopup(popupEdit));
 formProfileEdit.addEventListener("submit", handleProfileFormSubmit);
 
 const initialCards = [
@@ -112,26 +114,18 @@ const popupCloseImgPopup = previewImagePopup.querySelector(
   "#preview-popup-close-button"
 );
 
-function handleImageKeyDown(evt) {
-  if (evt.key === "Escape") {
-    closePopup(previewImagePopup);
-  }
-}
 
 const handleImgClick = (evt) => {
   popupImg.src = evt.target.src;
   popupText.textContent = evt.target.alt;
   popupImg.alt = evt.target.alt;
 
-  resetValidation();
   openPopup(previewImagePopup);
 };
 
-function closeImagePopup() {
   closePopup(previewImagePopup);
-}
 
-popupCloseImgPopup.addEventListener("click", closeImagePopup);
+popupCloseImgPopup.addEventListener("click", () => closePopup(previewImagePopup));
 
 const prepareCard = (name, link) => {
   const element = template.cloneNode(true);
@@ -163,11 +157,6 @@ const placeFormElementAdd = document.querySelector("#add-place-form");
 const placeInput = placeFormElementAdd.querySelector("#place-input");
 const linkInput = placeFormElementAdd.querySelector("#link-input");
 
-function handleAddWindowKeyDown(evt) {
-  if (evt.key === "Escape") {
-    closePopup(popupAddButton);
-  }
-}
 
 function openAddWindow() {
   resetValidation();
@@ -180,9 +169,6 @@ function closeAddWindow() {
 
 function addPlaceFormSubmitHandler(evt) {
   evt.preventDefault();
-
-  const placeInputElement = document.querySelector("#place-input");
-  const linkInputElement = document.querySelector("#link-input");
 
   const name = placeInputElement.value;
   const link = linkInputElement.value;

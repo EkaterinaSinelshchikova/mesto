@@ -111,7 +111,7 @@ function resetValidation() {
     inputErrorClass,
     inactiveButtonClass,
     formSelector,
-    errorSelector,
+    errorClass,
     submitButtonSelector,
   } = config;
 
@@ -124,7 +124,7 @@ function resetValidation() {
     const saveButton = formElement.querySelector(`.${submitButtonSelector}`);
 
     inputList.forEach((inputElement) => {
-      hideInputError(formElement, inputElement, inputErrorClass, errorSelector);
+      hideInputError(formElement, inputElement, inputErrorClass, errorClass);
     });
 
     toggleButtonState(inputList, saveButton, inactiveButtonClass);

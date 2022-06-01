@@ -4,8 +4,3 @@
   width: 100%;
 }
 
-@media (max-width: 900px) {
-  .popup__figure {
-    width: 75%;
-  }
-}
