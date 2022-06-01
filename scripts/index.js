@@ -50,9 +50,6 @@ function openPopupEdit() {
   openPopup(popupEdit);
 }
 
-  closePopup(popupEdit);
-
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
@@ -114,7 +111,6 @@ const popupCloseImgPopup = previewImagePopup.querySelector(
   "#preview-popup-close-button"
 );
 
-
 const handleImgClick = (evt) => {
   popupImg.src = evt.target.src;
   popupText.textContent = evt.target.alt;
@@ -123,9 +119,9 @@ const handleImgClick = (evt) => {
   openPopup(previewImagePopup);
 };
 
-  closePopup(previewImagePopup);
-
-popupCloseImgPopup.addEventListener("click", () => closePopup(previewImagePopup));
+popupCloseImgPopup.addEventListener("click", () =>
+  closePopup(previewImagePopup)
+);
 
 const prepareCard = (name, link) => {
   const element = template.cloneNode(true);
@@ -156,7 +152,6 @@ const popupCloseButton = document.querySelector("#add-popup-close-button");
 const placeFormElementAdd = document.querySelector("#add-place-form");
 const placeInput = placeFormElementAdd.querySelector("#place-input");
 const linkInput = placeFormElementAdd.querySelector("#link-input");
-
 
 function openAddWindow() {
   resetValidation();
