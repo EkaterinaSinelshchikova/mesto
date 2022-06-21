@@ -36,8 +36,7 @@
           type="button"
         ></button>
       </section>
-      <section class="elements">
-      </section>
+      <section class="elements"></section>
     </main>
     <footer class="footer">
       <span class="footer__copyright">&copy; 2020 Mesto Russia</span>
@@ -51,7 +50,7 @@
           type="button"
         ></button>
         <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
-        <form class="popup__form" name="info">
+        <form class="popup__form profile-edit-form" name="info">
           <label class="popup__label">
             <input
               class="popup__input"
@@ -98,7 +97,7 @@
           id="add-popup-close-button"
         ></button>
         <h2 class="popup__title">Новое&nbsp;место</h2>
-        <form class="popup__form" id="add-place-form" name="info">
+        <form class="popup__form add-place-form" name="info">
           <label class="popup__label">
             <input
               class="popup__input"
@@ -167,7 +166,8 @@
         </div>
       </div>
     </template>
-    <script src="./scripts/validate.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/Card.js"></script>
+    <script type="module" src="./scripts/FormValidator.js"></script>
   </body>
 </html>
