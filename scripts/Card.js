@@ -1,29 +1,39 @@
-import { previewImagePopup, openPopup } from "./index.js";
+import { openPopup } from "./index.js";
+
+const previewImagePopup = document.querySelector(".popup_type_image-preview");
+const popupImg = previewImagePopup.querySelector(".popup__img");
+const popupText = previewImagePopup.querySelector(".popup__text");
 
 export class Card {
   constructor(config) {
     this._name = config.name;
     this._link = config.link;
     this._selector = config.selector;
+    this._element = document
+      .querySelector(config.selector)
+      .content.cloneNode(true);
+    this._elementImg = this._element.querySelector(".element__img");
+    this._elementTitle = this._element.querySelector(".element__title");
+    this._elementDelBtn = this._element.querySelector(
+      ".element__delete-button"
+    );
+    this._elementLikeBtn = this._element.querySelector(".element__like-button");
   }
 
   prepareCard() {
-    const template = document.querySelector(this._selector).content;
-    const element = template.cloneNode(true);
-    const elementImg = element.querySelector(".element__img");
-    const elementTitle = element.querySelector(".element__title");
-    const elementDelBtn = element.querySelector(".element__delete-button");
-    const elementLikeBtn = element.querySelector(".element__like-button");
+    this._elementImg.src = this._link;
+    this._elementImg.alt = this._name;
+    this._elementTitle.textContent = this._name;
 
-    elementImg.src = this._link;
-    elementImg.alt = this._name;
-    elementTitle.textContent = this._name;
+    this._setEventListeners();
 
-    elementLikeBtn.addEventListener("click", this._handleLikeClick);
-    elementDelBtn.addEventListener("click", this._handleDelClick);
-    elementImg.addEventListener("click", this._handleImgClick);
+    return this._element;
+  }
 
-    return element;
+  _setEventListeners() {
+    this._elementLikeBtn.addEventListener("click", this._handleLikeClick);
+    this._elementDelBtn.addEventListener("click", this._handleDelClick);
+    this._elementImg.addEventListener("click", this._handleImgClick);
   }
 
   _handleLikeClick(evt) {
@@ -35,9 +45,6 @@ export class Card {
   }
 
   _handleImgClick(evt) {
-    const popupImg = previewImagePopup.querySelector(".popup__img");
-    const popupText = previewImagePopup.querySelector(".popup__text");
-
     popupImg.src = evt.target.src;
     popupText.textContent = evt.target.alt;
     popupImg.alt = evt.target.alt;
