@@ -1,6 +1,8 @@
 import { FormValidator } from "./FormValidator.js";
 import { Card } from "./Card.js";
 
+import '../pages/index.css'; 
+
 const profileEditBtn = document.querySelector(".profile__edit-button");
 const popupEdit = document.querySelector(".popup_type_edit-button");
 const popupEditClose = document.querySelector(".popup__close-button");
