@@ -18,6 +18,7 @@ export class Card {
       ".element__delete-button"
     );
     this._elementLikeBtn = this._element.querySelector(".element__like-button");
+    this._handleCardClick = config.handleCardClick;
   }
 
   prepareCard() {
@@ -33,22 +34,18 @@ export class Card {
   _setEventListeners() {
     this._elementLikeBtn.addEventListener("click", this._handleLikeClick);
     this._elementDelBtn.addEventListener("click", this._handleDelClick);
-    this._elementImg.addEventListener("click", this._handleImgClick);
+    this._elementImg.addEventListener("click", this._handleCardElementClick);
   }
 
-  _handleLikeClick(evt) {
+  _handleCardElementClick = () => {
+    this._handleCardClick({ name: this._name, link: this._link });
+  };
+
+  _handleLikeClick = (evt) => {
     evt.target.classList.toggle("element__like-button_active");
-  }
+  };
 
-  _handleDelClick(evt) {
+  _handleDelClick = (evt) => {
     evt.target.closest(".element").remove();
-  }
-
-  _handleImgClick(evt) {
-    popupImg.src = evt.target.src;
-    popupText.textContent = evt.target.alt;
-    popupImg.alt = evt.target.alt;
-
-    openPopup(previewImagePopup);
-  }
+  };
 }
