@@ -29,8 +29,6 @@ export const formProfileEdit = document.querySelector(".profile-edit-form");
 export const placeFormElementAdd = document.querySelector(".add-place-form");
 export const profileEditBtn = document.querySelector(".profile__edit-button");
 export const imgBtnAdd = document.querySelector(".profile__add-button");
-export const cardsContainer = document.querySelector(".elements");
-
 export const nameInput = formProfileEdit.querySelector("#name-input");
 export const jobInput = formProfileEdit.querySelector("#job-input");
 

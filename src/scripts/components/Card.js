@@ -1,9 +1,3 @@
-import { openPopup } from "../index.js";
-
-const previewImagePopup = document.querySelector(".popup_type_image-preview");
-const popupImg = previewImagePopup.querySelector(".popup__img");
-const popupText = previewImagePopup.querySelector(".popup__text");
-
 export class Card {
   constructor(config) {
     this._name = config.name;
@@ -11,7 +5,8 @@ export class Card {
     this._selector = config.selector;
     this._element = document
       .querySelector(config.selector)
-      .content.cloneNode(true);
+      .content.querySelector(".element")
+      .cloneNode(true);
     this._elementImg = this._element.querySelector(".element__img");
     this._elementTitle = this._element.querySelector(".element__title");
     this._elementDelBtn = this._element.querySelector(

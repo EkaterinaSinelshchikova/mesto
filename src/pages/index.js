@@ -1,12 +1,11 @@
-import { FormValidator } from "./components/FormValidator.js";
-import { Card } from "./components/Card.js";
-import { Section } from "./components/Section.js";
-import { PopupWithImage } from "./components/PopupWithImage.js";
-import { PopupWithForm } from "./components/PopupWithForm.js";
-import { UserInfo } from "./components/UserInfo.js";
+import { FormValidator } from "../scripts/components/FormValidator.js";
+import { Card } from "../scripts/components/Card.js";
+import { Section } from "../scripts/components/Section.js";
+import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
+import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
+import { UserInfo } from "../scripts/components/UserInfo.js";
 import {
   initialCards,
-  cardsContainer,
   nameInput,
   jobInput,
   formProfileEdit,
@@ -14,7 +13,7 @@ import {
   profileEditBtn,
   imgBtnAdd,
   validationConfig,
-} from "./constants.js";
+} from "../scripts/constants.js";
 
 import "../pages/index.css";
 
@@ -41,10 +40,7 @@ const addPlaceForm = new PopupWithForm(
 );
 
 const popupImg = new PopupWithImage(".popup_type_image-preview");
-const cardsSection = new Section(
-  { items: initialCards, renderer: createCard },
-  ".elements"
-);
+const cardsSection = new Section(createCard, ".elements");
 formAddValidator.enableValidation();
 formEditValidator.enableValidation();
 
@@ -59,21 +55,24 @@ profileEditBtn.addEventListener("click", () => {
   profileEditForm.open();
 });
 
-imgBtnAdd.addEventListener("click", () => addPlaceForm.open());
+imgBtnAdd.addEventListener("click", () => {
+  formAddValidator.resetValidation();
+  addPlaceForm.open();
+});
 
 function handleProfileFormSubmit(values) {
   userInfo.setUserInfo(values);
 }
 
-function handleAddPlaceFormSubmit({ name, link }) {
-  const element = createCard({ name, link });
+function handleAddPlaceFormSubmit(card) {
+  const element = cardsSection.render(card);
 
-  cardsContainer.prepend(element);
+  cardsSection.addItem(element);
   formAddValidator.resetValidation();
 }
 
-initialCards.forEach(({ name, link }) => {
-  const element = createCard({ name, link });
+initialCards.forEach((card) => {
+  const element = cardsSection.render(card);
   cardsSection.addItem(element);
 });
 
