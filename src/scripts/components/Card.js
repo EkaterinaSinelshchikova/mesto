@@ -1,4 +1,4 @@
-import { openPopup } from "./index.js";
+import { openPopup } from "../index.js";
 
 const previewImagePopup = document.querySelector(".popup_type_image-preview");
 const popupImg = previewImagePopup.querySelector(".popup__img");
