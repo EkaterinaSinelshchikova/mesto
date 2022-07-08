@@ -40,7 +40,11 @@ const addPlaceForm = new PopupWithForm(
 );
 
 const popupImg = new PopupWithImage(".popup_type_image-preview");
-const cardsSection = new Section(createCard, ".elements");
+const cardsSection = new Section(
+  (item) => cardsSection.addItem(createCard(item)),
+  ".elements"
+);
+
 formAddValidator.enableValidation();
 formEditValidator.enableValidation();
 
@@ -65,16 +69,11 @@ function handleProfileFormSubmit(values) {
 }
 
 function handleAddPlaceFormSubmit(card) {
-  const element = cardsSection.render(card);
-
-  cardsSection.addItem(element);
+  cardsSection.render([card]);
   formAddValidator.resetValidation();
 }
 
-initialCards.forEach((card) => {
-  const element = cardsSection.render(card);
-  cardsSection.addItem(element);
-});
+cardsSection.render(initialCards);
 
 function createCard({ name, link }) {
   const card = new Card({
