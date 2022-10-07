@@ -1,0 +1,34 @@
+.profile__avatar-edit-button {
+  width: 122px;
+  height: 122px;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(../../../img/PencilAvatar.svg);
+  background-size: 26px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.1s linear;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+}
+
+.profile__avatar-edit-button:focus {
+  outline: none;
+}
+
+@media (max-width: 539px) {
+    .profile__avatar-edit-button {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+
+    }
+  }

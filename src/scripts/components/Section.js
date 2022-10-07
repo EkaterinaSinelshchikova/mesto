@@ -13,4 +13,8 @@ export class Section {
   addItem(element) {
     this._containerSelector.prepend(element);
   }
+
+  removeItem(element) {
+    this._containerSelector.removeChild(element);
+  }
 }

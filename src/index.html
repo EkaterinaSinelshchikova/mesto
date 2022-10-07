@@ -8,20 +8,27 @@
 
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="<%=require('./img/logo.svg')%>" alt="Логотип Место" />
+      <img
+        class="header__logo"
+        src="<%=require('./img/logo.svg')%>"
+        alt="Логотип Место"
+      />
     </header>
 
     <main class="content">
       <section class="profile">
-        <img
-          class="profile__avatar"
-          src="<%=require('./img/avatar.jpg')%>"
-          alt="Аватар пользователя"
-        />
+        <div class="profile__avatar-edit">
+          <img
+            class="profile__avatar"
+            src="<%=require('./img/avatar.jpg')%>"
+            alt="Аватар пользователя"
+          />
+          <button type="button" class="profile__avatar-edit-button"></button>
+        </div>
         <div class="profile__info">
           <div class="profile__text">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <p class="profile__job">Исследователь океана</p>
+            <p class="profile__about">Исследователь океана</p>
           </div>
           <button
             aria-label="Редактировать"
@@ -49,7 +56,11 @@
           type="button"
         ></button>
         <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
-        <form class="popup__form profile-edit-form" name="profile-edit-form">
+        <form
+          class="popup__form profile-edit-form"
+          name="profile-edit-form"
+          method="post"
+        >
           <label class="popup__label">
             <input
               class="popup__input"
@@ -69,12 +80,12 @@
               type="text"
               required
               placeholder="О себе"
-              id="job-input"
-              name="description"
+              id="about-input"
+              name="about"
               minlength="2"
               maxlength="200"
             />
-            <span id="job-input-error" class="popup__error"></span>
+            <span id="about-input-error" class="popup__error"></span>
           </label>
           <button
             aria-label="Сохранить"
@@ -96,7 +107,11 @@
           id="add-popup-close-button"
         ></button>
         <h2 class="popup__title">Новое&nbsp;место</h2>
-        <form class="popup__form add-place-form" name="add-place-form">
+        <form
+          class="popup__form add-place-form"
+          name="add-place-form"
+          method="post"
+        >
           <label class="popup__label">
             <input
               class="popup__input"
@@ -147,16 +162,54 @@
       </div>
     </div>
 
+    <div class="popup popup_delete">
+      <div class="popup__content">
+        <form class="popup__form">
+          <button class="popup__close-button" type="button"></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button class="popup__save-button" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup-edit-avatar">
+      <div class="popup__content">
+        <form
+          class="popup__form avatar-edit-form"
+          method="post"
+          name="editavatar-place-form"
+        >
+          <button class="popup__close-button" type="button"></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <label class="popup__label">
+            <input
+              class="popup__input"
+              type="url"
+              name="avatar"
+              placeholder="Ссылка на картинку"
+              required
+              id="avatar-input"
+            />
+            <span class="popup__error" id="avatar-input-error"></span>
+          </label>
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
     <template class="template-element">
       <div class="element">
         <img class="element__img" src="#" />
         <div class="element__group">
           <h2 class="element__title"></h2>
-          <button
-            aria-label="Нравится"
-            class="element__like-button"
-            type="button"
-          ></button>
+          <div class="element__like-container">
+            <button
+              aria-label="Нравится"
+              class="element__like-button"
+              type="button"
+            ></button>
+            <span class="elements__like-counter"></span>
+          </div>
           <button
             class="element__delete-button"
             type="button"
