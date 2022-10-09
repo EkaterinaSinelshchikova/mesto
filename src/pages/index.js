@@ -65,11 +65,11 @@ function handlePopupEdit(data) {
   api.editProfile(data)
     .then((res) => {
       userInfo.setUserInfo(res);
+      editPopup.close();
     })
     .catch((err) => console.log(err))
     .finally(() => {
       editPopup.setLoading(false);
-      editPopup.close();
     });
 }
 
@@ -79,11 +79,11 @@ const addPlaceForm = new PopupWithForm(".popup_type_add-button", (data) => {
   api.addNewCard(data)
     .then((res) => {
       cardsSection.addItem(createCard(res), true);
+      addPlaceForm.close();
     })
     .catch((err) => console.log(err))
     .finally(() => {
       addPlaceForm.setLoading(false);
-      addPlaceForm.close();
     });
 });
 
@@ -93,11 +93,11 @@ function handleAvatarEdit(data) {
   api.editAvatar(data)
     .then((res) => {
       userInfo.setAvatar(res);
+      avatarEdit.close();
     })
     .catch((err) => console.log(err))
     .finally(() => {
       avatarEdit.setLoading(false);
-      avatarEdit.close();
     });
 }
 

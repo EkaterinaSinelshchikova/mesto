@@ -1,12 +1,3 @@
-const isLikedByUser = (likesArray, userId) => {
-  for (let like in likesArray) {
-    if (like._id == userId) {
-      return true;
-    }
-  }
-  return false;
-};
-
 export class Card {
   constructor(config) {
     this._name = config.name;
@@ -29,7 +20,7 @@ export class Card {
     this._cardId = config._id;
     this._handleLike = config.handleLike;
     this._likes = config.likes || [];
-    this._isLiked = isLikedByUser(this._likes, this._userId);
+    this._isLiked = this._isLikedByUser(this._likes, this._userId);
     this._addCardLike = config.addCardLike;
     this._deleteCardLike = config.deleteCardLike;
     this._likeCounter = this._element.querySelector(".elements__like-counter");
@@ -47,10 +38,18 @@ export class Card {
     this._elementImg.alt = this._name;
     this._elementTitle.textContent = this._name;
 
+    if (this._isLiked) {
+      this._elementLikeBtn.classList.add("element__like-button_active");
+    }
+
     this._setEventListeners();
 
     return this._element;
   }
+
+  _isLikedByUser = (likesArray, userId) => {
+    return !!likesArray.find((like) => like._id === userId);
+  };
 
   _setEventListeners() {
     this._elementLikeBtn.addEventListener("click", this._handleLikeClick);
@@ -62,21 +61,19 @@ export class Card {
     this._handleCardClick({ name: this._name, link: this._link });
   };
 
-  _handleCardDeleteClick = (event) => {
-    this._handleCardDelete(event, this._cardId);
+  _handleCardDeleteClick = (evt) => {
+    this._handleCardDelete(evt, this._cardId);
   };
 
   _handleLikeClick = (evt) => {
-    evt.target.classList.toggle("element__like-button_active");
     if (
-      !this._elementLikeBtn.classList.contains("elements__like-button_active")
+      !this._elementLikeBtn.classList.contains("element__like-button_active")
     ) {
       this._addCardLike(this._cardId)
         .then((res) => {
+          evt.target.classList.toggle("element__like-button_active");
           this._data = res;
           this._likeCounter.textContent = res.likes.length;
-          this._elementLikeBtn.classList.add("heartbeat");
-          this._elementLikeBtn.classList.add("elements__like-button_active");
         })
         .catch((err) => console.log(err));
     } else {
@@ -84,8 +81,7 @@ export class Card {
         .then((res) => {
           this._data = res;
           this._likeCounter.textContent = res.likes.length;
-          this._elementLikeBtn.classList.remove("heartbeat");
-          this._elementLikeBtn.classList.remove("elements__like-button_active");
+          this._elementLikeBtn.classList.remove("element__like-button_active");
         })
         .catch((err) => console.log(err));
     }
